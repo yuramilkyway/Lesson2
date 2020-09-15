@@ -120,6 +120,7 @@ public class HashDemoMap<K, V> implements DemoMap{
 
         if (hashTable[index].getNodes().size() == 1) {
             hashTable[index].getNodes().remove(0);
+            size--;
             return true;
         }
 
@@ -127,10 +128,10 @@ public class HashDemoMap<K, V> implements DemoMap{
         for (Node<K, V> node : nodeList) {
             if (key.equals(node.getKey())) {
                 nodeList.remove(node);
+                size--;
                 return true;
             }
         }
-
         return false;
     }
 
@@ -207,5 +208,11 @@ public class HashDemoMap<K, V> implements DemoMap{
             }
             return false;
         }
+
+    }
+
+    @Override
+    public String toString() {
+        return  getClass().getName() + '@' + Integer.toHexString(hashCode());
     }
 }
