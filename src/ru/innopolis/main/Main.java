@@ -13,6 +13,7 @@ public class Main {
         hashDemoMap.put(5, "gggg");
 
         System.out.println(hashDemoMap.get(5));
+        System.out.println(hashDemoMap.containsKey(5));
         hashDemoMap.remove(5);
         System.out.println(hashDemoMap.get(5));
     }

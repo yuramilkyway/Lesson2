@@ -136,7 +136,17 @@ public class HashDemoMap<K, V> implements DemoMap{
 
     @Override
     public boolean containsKey(Object key) {
+        int index = hash((K) key);
+        if (index < hashTable.length &&
+                hashTable[index] != null) {
 
+            List<Node<K, V>> list = hashTable[index].getNodes();
+            for (Node<K, V> node : list) {
+                if (key.equals(node.getKey())) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
