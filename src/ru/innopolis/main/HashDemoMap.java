@@ -26,14 +26,15 @@ public class HashDemoMap implements DemoMap {
      * или коэффициент загрузки неположительный
      */
     public HashDemoMap(int initialCapacity, float loadFactor) {
-        if (initialCapacity < 0)
-            throw new IllegalArgumentException("Illegal initial capacity: " +
-                    initialCapacity);
-        if (initialCapacity > MAXIMUM_CAPACITY)
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
+        }
+        if (initialCapacity > MAXIMUM_CAPACITY) {
             initialCapacity = MAXIMUM_CAPACITY;
-        if (loadFactor <= 0 || Float.isNaN(loadFactor))
-            throw new IllegalArgumentException("Illegal load factor: " +
-                    loadFactor);
+        }
+        if (loadFactor <= 0 || Float.isNaN(loadFactor)) {
+            throw new IllegalArgumentException("Illegal load factor: " + loadFactor);
+        }
         this.loadFactor = loadFactor;
         this.initialCapacity = initialCapacity;
         hashTable = new Node[initialCapacity];
@@ -48,13 +49,14 @@ public class HashDemoMap implements DemoMap {
     * @ выдает исключение IllegalArgumentException, если начальная емкость отрицательная.
     */
     public HashDemoMap(int initialCapacity) {
-        if (initialCapacity < 0)
-            throw new IllegalArgumentException("Illegal initial capacity: " +
-                    initialCapacity);
-        if (initialCapacity > MAXIMUM_CAPACITY)
+        if (initialCapacity < 0) {
+            throw new IllegalArgumentException("Illegal initial capacity: " + initialCapacity);
+        }
+        if (initialCapacity > MAXIMUM_CAPACITY) {
             initialCapacity = MAXIMUM_CAPACITY;
+        }
         this.initialCapacity = initialCapacity;
-        this.loadFactor = DEFAULT_LOAD_FACTOR;
+        loadFactor = DEFAULT_LOAD_FACTOR;
         hashTable = new Node[initialCapacity];
         threshold = (int) (initialCapacity * loadFactor);
 
@@ -128,6 +130,14 @@ public class HashDemoMap implements DemoMap {
 
     }
 
+    /**
+     *Связывает указанное значение с указанным ключом на этой карте.
+     * Если карта ранее содержала сопоставление для ключа, старый
+     * значение заменяется.
+     * @param key   ключ, с которым должно быть связано указанное значение
+     * @param value значение, которое будет связано с указанным ключом
+     * @return результат выполнения
+     */
     @Override
     public Object put(Object key, Object value) {
         if (size + 1 >= threshold) {
@@ -153,12 +163,19 @@ public class HashDemoMap implements DemoMap {
         return false;
     }
 
+    /**
+     * Добавляем ноду
+     * @param index номер бакета
+     * @param newNode нода
+     * @return результат выполнения
+     */
     private boolean simpleAdd(int index, Node newNode) {
         hashTable[index] = new Node(null, null);
         hashTable[index].getNodes().add(newNode);
         size++;
         return true;
     }
+
 
     private boolean keyExistButValueNew(
             final Node nodeFromList,
@@ -212,9 +229,7 @@ public class HashDemoMap implements DemoMap {
     @Override
     public Object get(Object key) {
         int index = hash(key);
-        if (index < hashTable.length &&
-                hashTable[index] != null) {
-
+        if (index < hashTable.length && hashTable[index] != null) {
             List<Node> list = hashTable[index].getNodes();
             for (Node node : list) {
                 if (key.equals(node.getKey())) {
