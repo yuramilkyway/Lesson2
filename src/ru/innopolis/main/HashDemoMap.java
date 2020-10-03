@@ -221,10 +221,12 @@ public class HashDemoMap implements DemoMap {
     }
 
     /**
-     * Implements Map.get and related methods.
+     * Возвращает значение, которому сопоставлен указанный ключ, или null,
+     * если эта карта не содержит сопоставления для ключа.
      *
-     * @param key the key
-     * @return the node, or null if none
+     * @param key ключ, связанное значение которого должно быть возвращено
+     * @return значение, которому сопоставлен указанный ключ,
+     * или null, если эта карта не содержит сопоставления для ключа
      */
     @Override
     public Object get(Object key) {
