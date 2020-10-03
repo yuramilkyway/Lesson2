@@ -164,7 +164,7 @@ public class HashDemoMap implements DemoMap {
     }
 
     /**
-     * Добавляем ноду
+     * Добавляет ноду
      * @param index номер бакета
      * @param newNode нода
      * @return результат выполнения
@@ -175,7 +175,6 @@ public class HashDemoMap implements DemoMap {
         size++;
         return true;
     }
-
 
     private boolean keyExistButValueNew(
             final Node nodeFromList,
@@ -205,6 +204,9 @@ public class HashDemoMap implements DemoMap {
         return false;
     }
 
+    /**
+     * Создаем новый лист с размером в 2 раза больше предыдущего и перезаписываем ноды.
+     */
     private void arrayDoubling() {
         Node[] oldHashTable = hashTable;
         hashTable = new Node[oldHashTable.length * 2];
@@ -224,8 +226,6 @@ public class HashDemoMap implements DemoMap {
      * @param key the key
      * @return the node, or null if none
      */
-
-
     @Override
     public Object get(Object key) {
         int index = hash(key);
@@ -240,6 +240,13 @@ public class HashDemoMap implements DemoMap {
         return null;
     }
 
+    /**
+     * Удаляет сопоставление для ключа с этой карты, если оно присутствует.
+     *
+     * @param key ключ, отображение которого нужно удалить с карты.
+     * @return предыдущее значение, связанное с ключом, или null,
+     * если для ключа не было сопоставления.
+     */
     @Override
     public Object remove(Object key) {
         int index = hash(key);
@@ -265,12 +272,10 @@ public class HashDemoMap implements DemoMap {
     }
 
     /**
-     * Returns {@code true} if this map contains a mapping for the
-     * specified key.
+     * Возвращает true, если эта карта содержит отображение для указанного ключа.
      *
-     * @param   key   The key whose presence in this map is to be tested
-     * @return {@code true} if this map contains a mapping for the specified
-     * key.
+     * @param key - ключ, наличие которого в этой карте необходимо проверить
+     * @return истина, если эта карта содержит отображение для указанного ключа
      */
     @Override
     public boolean containsKey(Object key) {
@@ -288,6 +293,12 @@ public class HashDemoMap implements DemoMap {
         return false;
     }
 
+    /**
+     * Возвращает количество сопоставлений "ключ-значение" на этой карте.
+     * Если карта содержит более элементов Integer.MAX_VALUE, возвращает Integer.MAX_VALUE.
+     *
+     * @return количество сопоставлений "ключ-значение" на этой карте
+     */
     @Override
     public int size() {
         return size;
