@@ -26,7 +26,7 @@ public class MainTest {
     }
 
     @Test
-    public void main() {
+    public void checkingTheMethodsPutGet() {
         //Запускаем тест
         //Провяем метод put() и get()
         Assert.assertEquals(actual.get(1), expected.get(1));
@@ -35,16 +35,25 @@ public class MainTest {
         expected.put(5, "gggg");
         actual.put(5, "gggg");
         Assert.assertEquals(actual.get(5), expected.get(5));
+    }
 
+    @Test
+    public void checkingTheMethodRemove() {
         //Проверяем метод remove()
         expected.remove(5);
         actual.remove(5);
         Assert.assertEquals(actual.get(5), expected.get(5));
+    }
 
+    @Test
+    public void checkingTheMethodSize() {
         //Проверяем метод size()
         Assert.assertEquals(actual.size(), expected.size());
+    }
 
+    @Test
+    public void checkingTheMethodContainsKey() {
         //Проверяем метод containsKey()
         Assert.assertEquals(actual.containsKey(1), expected.containsKey(1));
-        }
+    }
 }
